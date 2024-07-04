@@ -1,0 +1,41 @@
+# Definición de la clase base Vehiculo
+class Vehiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+        self.__kilometraje = 0  # Atributo privado para encapsulación
+    
+    def conducir(self, distancia):
+        self.__kilometraje += distancia
+        print(f"Conduciendo {distancia} km.")
+    
+    def get_kilometraje(self):
+        return self.__kilometraje
+    
+    def __str__(self):
+        return f"Vehículo {self.marca} {self.modelo}"
+
+
+# Definición de la clase derivada Automovil que hereda de Vehiculo
+class Automovil(Vehiculo):
+    def __init__(self, marca, modelo, color):
+        super().__init__(marca, modelo)
+        self.color = color
+    
+    def conducir(self, distancia):
+        # Ejemplo de polimorfismo: Método sobrescrito para Automovil
+        super().conducir(distancia)
+        print(f"El automóvil {self.marca} {self.modelo} ha recorrido un total de {self.get_kilometraje()} km.")
+
+
+# Creación de instancias y uso del programa
+if __name__ == "__main__":
+    # Crear un objeto de la clase base Vehiculo
+    vehiculo_generico = Vehiculo("MarcaGenérica", "ModeloGenérico")
+    vehiculo_generico.conducir(100)
+    print(vehiculo_generico)
+
+    # Crear un objeto de la clase derivada Automovil
+    automovil = Automovil("Toyota", "Corolla", "Rojo")
+    automovil.conducir(50)
+    print(automovil)
